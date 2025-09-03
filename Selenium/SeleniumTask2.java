@@ -25,8 +25,8 @@ public class Main {
         // Minimize the page
         driver.manage().window().minimize();
 
-        // Wait 5 seconds in the icon state and maximize the page (Thread.sleep(5000) was not working for me)
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+        // Wait 5 seconds in the icon state and maximize the page 
+        Thread.sleep(5000);
         driver.manage().window().maximize();
 
 
