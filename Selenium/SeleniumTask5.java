@@ -23,12 +23,12 @@ public class Main {
             System.out.println("The URL is " + url + " and it is not equal to the actual URL 'https://www.facebook.com/");
         }
 
-        // Verify expected contains Facebook Word ( it does give true output if the F is in lower case )
+        // Verify expected contains Facebook word ( it does give true as an output if the F is in lower case )
         if(url.contains("Facebook")){
-            System.out.println("The URL is " + url + " and it contains 'Facebook' Word");
+            System.out.println("The URL is " + url + " and it contains 'Facebook' word");
         }
         else{
-            System.out.println("The URL is " + url + " and it does not contain 'Facebook' Word");
+            System.out.println("The URL is " + url + " and it does not contain 'Facebook' word");
         }
 
     }
