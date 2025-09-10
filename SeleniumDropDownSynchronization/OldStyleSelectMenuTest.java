@@ -4,7 +4,7 @@ import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.support.ui.Select;
 
 import static org.junit.Assert.assertEquals;
@@ -18,6 +18,8 @@ public class OldStyleSelectMenuTest {
         driver= new EdgeDriver();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.manage().window().maximize();
+        driver.get("https://demoqa.com/select-menu");
+        dropdown = new Select(driver.findElement(By.id("oldSelectMenu")));
     }
 
     @Test
