@@ -1,20 +1,29 @@
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-public class CheckboxInteraction {
-    public static void main(String[] args) {
-        System.setProperty("webdriver.chrome.driver", "path/to/chromedriver");
-        WebDriver driver = new ChromeDriver();
-        
-        driver.get("https://the-internet.herokuapp.com/checkboxes");
+import static org.junit.Assert.assertTrue;
 
-        // Locate checkboxes
+public class CheckboxInteractionTest {
+    private WebDriver driver;
+
+    @Before
+    public void setUp() {
+        System.setProperty("webdriver.chrome.driver", "path/to/chromedriver");
+        driver = new ChromeDriver();
+        driver.get("https://the-internet.herokuapp.com/checkboxes");
+    }
+
+    @Test
+    public void testCheckboxInteraction() {
         WebElement checkbox1 = driver.findElement(By.xpath("//input[1]"));
         WebElement checkbox2 = driver.findElement(By.xpath("//input[2]"));
 
-        // Check current state and ensure both are selected
+        // Ensure both are selected
         if (!checkbox1.isSelected()) {
             checkbox1.click();
         }
@@ -23,9 +32,12 @@ public class CheckboxInteraction {
         }
 
         // Verify both checkboxes are checked
-        System.out.println("Checkbox 1 is selected: " + checkbox1.isSelected());
-        System.out.println("Checkbox 2 is selected: " + checkbox2.isSelected());
+        assertTrue("Checkbox 1 should be selected", checkbox1.isSelected());
+        assertTrue("Checkbox 2 should be selected", checkbox2.isSelected());
+    }
 
+    @After
+    public void tearDown() {
         driver.quit();
     }
 }
