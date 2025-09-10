@@ -15,11 +15,12 @@ public class GrowingClickableElementTest {
         driver= new EdgeDriver();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.manage().window().maximize();
-        driver.get("https://testpages.herokuapp.com/styled/challenges/growing-clickable.html");
+
     }
 
     @Test
     public void testGrowingClickable() {
+        driver.get("https://testpages.herokuapp.com/styled/challenges/growing-clickable.html");        
         driver.findElement(By.id("clickable")).click();
         String message = driver.findElement(By.id("result")).getText();
         assertTrue("Event Triggered message not displayed", message.contains("Event Triggered"));
