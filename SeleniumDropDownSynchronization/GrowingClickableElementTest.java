@@ -1,13 +1,15 @@
-import org.junit.AfterEach;
-import org.junit.BeforeEach;
-import org.junit.Test;
+package TestPackage;
+
+import org.junit.jupiter.api.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import java.time.Duration;
 
-import static org.junit.Assert.assertTrue;
-
-public class GrowingClickableElementTest {
+public class GrowingClickableElementTest  {
     private WebDriver driver;
 
     @BeforeEach
@@ -20,14 +22,23 @@ public class GrowingClickableElementTest {
 
     @Test
     public void testGrowingClickable() {
-        driver.get("https://testpages.herokuapp.com/styled/challenges/growing-clickable.html");        
-        driver.findElement(By.id("clickable")).click();
-        String message = driver.findElement(By.id("result")).getText();
-        assertTrue("Event Triggered message not displayed", message.contains("Event Triggered"));
+        driver.get("https://testpages.herokuapp.com/styled/challenges/growing-clickable.html");
+        WebElement button = driver.findElement(By.id("growbutton"));
+
+        // Waiting until the "Event Triggered" (growbuttonstatus) shows
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("growbuttonstatus")));
+
+
+        // Retrieve the result message and verify the message contains "Event Triggered"
+        String message = driver.findElement(By.id("growbuttonstatus")).getText();
+        System.out.println("Retrieved message: " + message);
+        Assertions.assertEquals("Event Triggered",message);
     }
 
     @AfterEach
-    public void tearDown() {
+    void tearDown() throws InterruptedException {
+        Thread.sleep(3000);
         driver.quit();
     }
 }
