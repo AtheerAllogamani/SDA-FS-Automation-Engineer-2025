@@ -1,5 +1,5 @@
-import org.junit.After;
-import org.junit.Before;
+import org.junit.AfterEach;
+import org.junit.BeforeEach;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -16,12 +16,11 @@ public class BasicDropDownOperationsTest {
     private WebDriver driver;
     private Select dropdown;
 
-    @Before
-    public void setUp() {
-        System.setProperty("webdriver.chrome.driver", "path/to/chromedriver");
-        driver = new ChromeDriver();
-        driver.get("https://the-internet.herokuapp.com/dropdown");
-        dropdown = new Select(driver.findElement(By.id("dropdown")));
+    @BeforeEach
+    void setUp() {
+        driver= new EdgeDriver();
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        driver.manage().window().maximize();
     }
 
     @Test
@@ -59,7 +58,7 @@ public class BasicDropDownOperationsTest {
         assertEquals("Dropdown should have 3 options", 3, dropdown.getOptions().size());
     }
 
-    @After
+    @AfterEach
     public void tearDown() {
         driver.quit();
     }
