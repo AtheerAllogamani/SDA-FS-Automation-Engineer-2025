@@ -5,8 +5,7 @@ import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.EdgeDriver;
-
+import org.openqa.selenium.edge.EdgeDriver;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
