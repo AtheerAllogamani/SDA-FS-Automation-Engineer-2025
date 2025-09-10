@@ -1,5 +1,5 @@
-import org.junit.After;
-import org.junit.Before;
+import org.junit.AfterEach;
+import org.junit.BeforeEach;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -13,12 +13,11 @@ public class OldStyleSelectMenuTest {
     private WebDriver driver;
     private Select dropdown;
 
-    @Before
-    public void setUp() {
-        System.setProperty("webdriver.chrome.driver", "path/to/chromedriver");
-        driver = new ChromeDriver();
-        driver.get("https://demoqa.com/select-menu");
-        dropdown = new Select(driver.findElement(By.id("oldSelectMenu")));
+    @BeforeEach
+    void setUp() {
+        driver= new EdgeDriver();
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        driver.manage().window().maximize();
     }
 
     @Test
@@ -32,7 +31,7 @@ public class OldStyleSelectMenuTest {
         dropdown.selectByValue("5"); // Assuming value for another option
     }
 
-    @After
+    @AfterEach
     public void tearDown() {
         driver.quit();
     }
