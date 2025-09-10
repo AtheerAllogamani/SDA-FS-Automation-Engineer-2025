@@ -1,6 +1,6 @@
 import com.github.javafaker.Faker;
-import org.junit.After;
-import org.junit.Before;
+import org.junit.AfterEach;
+import org.junit.BeforeEach;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -13,10 +13,12 @@ public class FakerDataFormTest {
     private WebDriver driver;
     private Faker faker;
 
-    @Before
-    public void setUp() {
-        System.setProperty("webdriver.chrome.driver", "path/to/chromedriver");
-        driver = new ChromeDriver();
+
+    @BeforeEach
+    void setUp() {
+        driver= new EdgeDriver();
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        driver.manage().window().maximize();
         faker = new Faker();
         driver.get("https://demoqa.com/text-box");
     }
@@ -35,7 +37,7 @@ public class FakerDataFormTest {
         assertTrue("Output should contain the entered data", outputText.contains(faker.name().fullName()));
     }
 
-    @After
+    @AfterEach
     public void tearDown() {
         driver.quit();
     }
