@@ -1,5 +1,5 @@
-import org.junit.After;
-import org.junit.Before;
+import org.junit.AfterEach;
+import org.junit.BeforeEach;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -11,10 +11,12 @@ import static org.junit.Assert.assertTrue;
 public class RadioButtonSelectionTest {
     private WebDriver driver;
 
-    @Before
-    public void setUp() {
-        System.setProperty("webdriver.chrome.driver", "path/to/chromedriver");
-        driver = new ChromeDriver();
+
+    @BeforeEach
+    void setUp() {
+        driver= new EdgeDriver();
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        driver.manage().window().maximize();
         driver.get("https://demoqa.com/radio-button");
     }
 
@@ -33,7 +35,7 @@ public class RadioButtonSelectionTest {
         }
     }
 
-    @After
+    @AfterEach
     public void tearDown() {
         driver.quit();
     }
