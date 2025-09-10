@@ -1,5 +1,5 @@
-import org.junit.After;
-import org.junit.Before;
+import org.junit.AfterEach;
+import org.junit.BeforeEach;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -11,11 +11,11 @@ import static org.junit.Assert.assertEquals;
 public class CalculatorOperationsTest {
     private WebDriver driver;
 
-    @Before
-    public void setUp() {
-        System.setProperty("webdriver.chrome.driver", "path/to/chromedriver");
-        driver = new ChromeDriver();
-        driver.get("https://testpages.eviltester.com/styled/calculator");
+    @BeforeEach
+    void setUp() {
+        driver= new EdgeDriver();
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        driver.manage().window().maximize();
     }
 
     @Test
@@ -35,7 +35,7 @@ public class CalculatorOperationsTest {
         }
     }
 
-    @After
+    @AfterEach
     public void tearDown() {
         driver.quit();
     }
