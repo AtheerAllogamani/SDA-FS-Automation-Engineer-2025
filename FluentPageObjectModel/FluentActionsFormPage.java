@@ -1,12 +1,31 @@
+package tests;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 
+@Test
 public class FluentActionsFormPage {
     private WebDriver driver;
     private Actions actions;
 
+    
+//        Go to https://claruswaysda.github.io/ActionsForm.html
+        Driver.getDriver().get("https://claruswaysda.github.io/ActionsForm.html");
+
+//        Fill form and submit
+        formPage
+                .enterName("John")
+                .enterAge("30")
+                .selectDepartment("IT Department")
+                .clickCoding()
+                .clickMale()
+                .clickGenerate()
+                .copyAlertText()
+                .sendCodeToAlert();
+
+//        Do all actions and assert
     public FluentActionsFormPage(WebDriver driver) {
         this.driver = driver;
         this.actions = new Actions(driver);
