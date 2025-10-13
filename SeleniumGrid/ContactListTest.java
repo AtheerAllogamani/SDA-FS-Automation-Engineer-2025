@@ -10,7 +10,7 @@ public class ContactListTest {
     public void setUp() throws Exception {
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setBrowserName("chrome");
-        driver = new RemoteWebDriver(new URL("http://<your-selenium-grid-url>:4444/wd/hub"), capabilities);
+        driver = new RemoteWebDriver(new URL("http://localhost:4444"), capabilities);
         contactListPage = new ContactListPage(driver);
         driver.get("https://thinking-tester-contact-list.herokuapp.com/");
     }
